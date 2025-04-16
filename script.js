@@ -6,6 +6,15 @@ let PhoneNumber = document.querySelector("#phoneNumber");
 let showPasswordButton = document.querySelector("#showPassword");
 let showConfirmPasswordButton = document.querySelector("#showConfirmPassword");
 let submit = document.querySelector("#btn");
+let paraName = document.getElementById("paraname");
+let paraEmail = document.getElementById("email");
+let paraPassword = document.getElementById("password");
+let paraConfirmPassword = document.getElementById("confirmPassword");
+let Address = document.getElementById("address");
+let paraAddress = document.getElementById("paraaddress");
+let postalAddress = document.getElementById("postaladdres");
+let paraPostalAddress = document.getElementById("postaddress");
+let paraPhone = document.getElementById("number");
 
 showPasswordButton.addEventListener("click", function () {
     if (Password.type === "password") {
@@ -25,68 +34,75 @@ showConfirmPasswordButton.addEventListener("click", function () {
 
 
 submit.addEventListener("click",function(event){
-    event.preventDefault();
+    event.preventDefault(event);
 
     if (Name.value === ""){
-        alert("Please Enter Your Name ")
+        paraName.innerText = "Please enter your Name"
         return
     }
     if(Email.value === ""){
-        alert("Please Enter Your Email")
+        paraEmail.innerText = "Please Enter Your Email"
         return
     }
     if (!Email.value.includes("@")) {
-        alert("Email must contain '@'.");
+        paraEmail.innerText = "Email must contain '@'."
         return;
     }
     let parts = Email.value.split(".");
     let extension = parts[parts.length - 1];
 
     if (extension.length > 3) {
-        alert("Email extension must be 3 characters or less.");
+        paraEmail.innerText = "Email extension must be 3 characters or less."
         return;
     }
     if(Password.value.length < 8){
-        alert("password should be 8 character or more");
+        paraPassword.innerText = "password should be 8 character or more"
         return
     }
     // let password = Password.value;
 
     if (!/(?=.*[a-z])/.test(Password.value)) {
-        alert("Password must contain at least one lowercase letter.");
+        paraPassword.innerText = "Password must contain at least one lowercase letter."
         return;  
     }
       
       
     if (!/(?=.*[A-Z])/.test(Password.value)) {
-        alert("Password must contain at least one uppercase letter.");
+        paraPassword.innerText = "Password must contain at least one uppercase letter."
         return;
     }
       
       
     if (!/(?=.*\d)/.test(Password.value)) {
-        alert("Password must contain at least one number.");
+        paraPassword.innerText = "Password must contain at least one number."
         return;
     }
       
       
     if (!/(?=.*[\W_])/.test(Password.value)) {
-        alert("Password must contain at least one special character (e.g., !@#$%^&*).");
+        paraPassword.innerText = "Password must contain at least one special character (e.g., !@#$%^&*)."
         return;
     }
     
     
     
     if(Password.value !== ConfirmPassword.value){
-        alert("Password does not matches")
+        paraConfirmPassword.innerText = "Password does not matches"
         return
+    }
+    if(Address.value === ""){
+        paraAddress.innerText = "Please enter Address";
+        return
+    }
+    if(postalAddress.value === ""){
+        paraPostalAddress.innerText = "Enter Your Postal Address";
     }
     if(PhoneNumber.value.length > 11 || PhoneNumber.value.length < 11){
-        alert("Phone Number should be 11 digits")
+        paraPhone.innerText = "Phone Number should be 11 digits"
         return
     }
-    if (/(\d).*\1/.test(PhoneNumber)) {
-        alert("Phone number must contain different digits (no repeating digits).");
+    if (/(\d).*\1/.test(PhoneNumber.value)) {
+        paraPhone.innerText = "Phone number must contain different digits (no repeating digits)."
         return;
     };
 })
